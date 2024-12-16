@@ -1,17 +1,12 @@
 import { RouteObject, RouterProvider, createBrowserRouter } from "react-router";
 import routes from "./Routes.consts";
-import TimeLog from "../../pages/HomePage";
+import HomePage from "../../pages/HomePage";
 import { Suspense } from "react";
 import Layout from "../../components/Layout";
 import MyTimeLog from "../../pages/MyTimeLog/MyTimeLog";
 
 const appRoutes: RouteObject[] = [
-  { index: true, path: "/", element: <TimeLog /> },
-
-  {
-    path: routes.timeLog,
-    element: <TimeLog />,
-  },
+  { index: true, path: "/", element: <HomePage /> },
   {
     path: routes.myTimeLog,
     element: <MyTimeLog />,
