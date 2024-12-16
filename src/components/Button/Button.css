@@ -1,0 +1,47 @@
+/* Base button styles */
+.button {
+  padding: 14px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Variants */
+.button.primary {
+  background-color: black;
+  color: #ffffff;
+}
+
+.button.primary:hover {
+  background-color: black;
+}
+
+.button.secondary {
+  background-color: #6c757d;
+  color: #ffffff;
+}
+
+.button.secondary:hover {
+  background-color: #5a6268;
+}
+
+.button.danger {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+
+.button.danger:hover {
+  background-color: #c82333;
+}
+
+/* Disabled state */
+.button.disabled,
+.button:disabled {
+  background-color: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.65;
+}

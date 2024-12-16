@@ -1,3 +1,4 @@
+import Button from "../Button";
 import "./Header.css";
 
 const Header = () => {
@@ -8,7 +9,7 @@ const Header = () => {
         <p>My Time Log</p>
         <p>Employees</p>
         <p>Projects</p>
-        <p>Home page</p>
+        <Button label="Home Page" variant="primary" />
       </nav>
     </div>
   );
