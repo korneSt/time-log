@@ -1,0 +1,11 @@
+.homepage-content {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  & p {
+    margin: 0;
+  }
+  & img {
+    height: fit-content;
+  }
+}
