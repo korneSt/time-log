@@ -4,7 +4,7 @@ import RoutesComponent from "./features/routes/Routes";
 
 const graphqlApi = "http://localhost/frontend_test/src/index.php/graphqlapi";
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   uri: graphqlApi,
   cache: new InMemoryCache(),
 });

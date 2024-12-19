@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { FC } from "react";
+import { FC, useState } from "react";
 import MyTimeLogList from "../../features/timeLogs/MyTimeLogList";
 import {
   Staff,
@@ -7,10 +7,24 @@ import {
   TimeLogWithStaff,
 } from "../../features/timeLogs/TimeLogs.types";
 
+import "./MyTimeLog.css";
+import Button from "../../components/Button";
+import NewTimeLogForm from "../../features/timeLogs/NewTimeLogForm/NewTimeLogForm";
+
 const STAFF_FRAGMENT = gql`
   fragment StaffFragment on Staff1 {
     id
     name
+  }
+`;
+
+const TIME_LOG_FIELDS_FRAGMENT = gql`
+  fragment TimeLogFields on TimeLog1 {
+    day
+    hours
+    project_name
+    subject
+    staff_id
   }
 `;
 
@@ -23,39 +37,23 @@ const GET_STAFF = gql`
   ${STAFF_FRAGMENT}
 `;
 
-const GET_TIMELOGS = gql`
+export const GET_TIMELOGS = gql`
   query GetTimelogs {
     timeLogs {
-      id
-      day
-      project_name
-      staff_id
+      ...TimeLogFields
     }
   }
-`;
-
-const GET_STAFF_BY_IDS = gql`
-  query GetStaffByIds($id: ID!) {
-    staff(id: $id) {
-      id
-      name
-    }
-  }
+  ${TIME_LOG_FIELDS_FRAGMENT}
 `;
 
 const MyTimeLog: FC = () => {
-  const {
-    loading,
-    error,
-    data: timeLogsData,
-  } = useQuery<{ timeLogs: TimeLog[] }>(GET_TIMELOGS);
-  const {
-    loading: staffLoading,
-    error: staffError,
-    data: staffData,
-  } = useQuery<{ staff: Staff[] }>(GET_STAFF);
+  const [displayForm, setDisplayForm] = useState(false);
 
-  console.log(timeLogsData);
+  const { data: timeLogsData, loading } = useQuery<{ timeLogs: TimeLog[] }>(
+    GET_TIMELOGS
+  );
+  const { data: staffData } = useQuery<{ staff: Staff[] }>(GET_STAFF);
+
   const timeLogsWithStaff: TimeLogWithStaff[] = (
     timeLogsData?.timeLogs ?? []
   )?.map((timeLog) => ({
@@ -64,12 +62,18 @@ const MyTimeLog: FC = () => {
   }));
 
   return (
-    <>
-      <MyTimeLogList timelogs={timeLogsWithStaff} />
-    </>
+    <div className="timelog-page">
+      <div className="timelog-content">
+        {loading && <p>loadsing</p>}
+        <MyTimeLogList timelogs={timeLogsWithStaff} />
+        <div className="timelog-img">
+          <img alt="avatar" src="/image.png" />
+          <Button label="Add new entry" onClick={() => setDisplayForm(true)} />
+        </div>
+      </div>
+      {displayForm && <NewTimeLogForm staff={staffData?.staff ?? []} />}
+    </div>
   );
-
-  // return <> {JSON.stringify(data)}</>;
 };
 
 export default MyTimeLog;

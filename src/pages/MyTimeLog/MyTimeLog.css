@@ -1,0 +1,22 @@
+.timelog-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.timelog-content {
+  display: flex;
+  justify-content: space-between;
+
+  & img {
+    height: fit-content;
+  }
+}
+
+.timelog-img {
+  position: relative;
+  & button {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+  }
+}
