@@ -1,9 +1,9 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 import { Staff, TimeLog } from "../TimeLogs.types";
-import { GET_STAFF, GET_TIMELOGS } from "../../../pages/MyTimeLog/MyTimeLog";
 import MyTimeLogList from "./MyTimeLogList";
+import { GET_STAFF, GET_TIMELOGS } from "../api";
 
 const mockTimeLogs: TimeLog[] = [
   {
@@ -30,7 +30,7 @@ const mockStaff: Staff[] = [
 ];
 
 describe("MyTimeLog Component", () => {
-  it("renders time logs with staff names and allows adding a new entry", async () => {
+  it("renders time logs with staff names", async () => {
     const mocks = [
       {
         request: { query: GET_TIMELOGS },
@@ -47,7 +47,7 @@ describe("MyTimeLog Component", () => {
         <MyTimeLogList timelogs={mockTimeLogs} />
       </MockedProvider>
     );
-    // Wait for data to load and render
+
     await waitFor(() => {
       expect(screen.getByText(/Project Alpha/i)).toBeInTheDocument();
       expect(screen.getByText(/Project Beta/i)).toBeInTheDocument();

@@ -5,9 +5,8 @@ import TextArea from "../../../components/TextArea";
 import { Staff } from "../TimeLogs.types";
 import { gql, useMutation } from "@apollo/client";
 
-import { GET_TIMELOGS } from "../../../pages/MyTimeLog/MyTimeLog";
-
 import "./NewTimeLogForm.css";
+import { GET_TIMELOGS } from "../api";
 
 interface NewTimeLogForm {
   staff: Staff[];

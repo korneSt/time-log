@@ -10,41 +10,7 @@ import {
 import "./MyTimeLog.css";
 import Button from "../../components/Button";
 import NewTimeLogForm from "../../features/timeLogs/NewTimeLogForm/NewTimeLogForm";
-
-const STAFF_FRAGMENT = gql`
-  fragment StaffFragment on Staff1 {
-    id
-    name
-  }
-`;
-
-const TIME_LOG_FIELDS_FRAGMENT = gql`
-  fragment TimeLogFields on TimeLog1 {
-    day
-    hours
-    project_name
-    subject
-    staff_id
-  }
-`;
-
-export const GET_STAFF = gql`
-  query GetStaff {
-    staff {
-      ...StaffFragment
-    }
-  }
-  ${STAFF_FRAGMENT}
-`;
-
-export const GET_TIMELOGS = gql`
-  query GetTimelogs {
-    timeLogs {
-      ...TimeLogFields
-    }
-  }
-  ${TIME_LOG_FIELDS_FRAGMENT}
-`;
+import { GET_STAFF, GET_TIMELOGS } from "../../features/timeLogs/api";
 
 const MyTimeLog: FC = () => {
   const [displayForm, setDisplayForm] = useState(false);
