@@ -1,6 +1,6 @@
-# React + TypeScript + Vite
+# Time log page (Apollo + React + Vite)
 
-[Application](homepage.png)
+![Application](homepage.png)
 
 To run the application
 
