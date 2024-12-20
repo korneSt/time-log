@@ -79,7 +79,7 @@ const NewTimeLogForm: FC<NewTimeLogForm> = ({ staff = [] }) => {
   return (
     <div className="form-container">
       <h1>New Entry</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} data-testid="new-entry-form">
         <div className="form-row">
           <Input
             label="Date"

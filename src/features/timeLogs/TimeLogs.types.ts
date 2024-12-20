@@ -2,8 +2,8 @@ export interface TimeLog {
   id: number;
   day: string;
   hours: number;
-  time_from: string;
-  time_to: string;
+  time_from?: string;
+  time_to?: string;
   project_name: string;
   subject?: string;
   staff_id: number;

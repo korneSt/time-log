@@ -28,7 +28,7 @@ const TIME_LOG_FIELDS_FRAGMENT = gql`
   }
 `;
 
-const GET_STAFF = gql`
+export const GET_STAFF = gql`
   query GetStaff {
     staff {
       ...StaffFragment
